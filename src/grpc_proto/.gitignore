@@ -1,2 +1,2 @@
-currency.rs
-currency_grpc.rs
+rate.rs
+rate_grpc.rs
