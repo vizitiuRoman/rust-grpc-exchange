@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package movie;
+
+message Pair {
+  string key = 1;
+  string value = 2;
+}
+
+message RatesRes {
+  repeated Pair pairs = 1;
+}
+
+message RateReq {
+  string pairs = 1;
+}
+
+service RateService {
+  rpc GetRates (RateReq) returns (RatesRes) {
+  }
+}

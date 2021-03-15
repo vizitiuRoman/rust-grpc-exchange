@@ -1,0 +1,22 @@
+[package]
+name = "rust-exchange-cli"
+version = "0.1.0"
+authors = ["vizitiuRoman <vizitiuroman.md@gmail.com>"]
+edition = "2018"
+
+[[bin]]
+name = "client"
+path = "client/client.rs"
+
+[[bin]]
+name = "server"
+path = "src/main.rs"
+
+[dependencies]
+grpcio = "0.8.2"
+grpc = "0.8.2"
+protobuf = "2.22.0"
+futures = "0.3.13"
+
+[build-dependencies]
+protoc-grpcio = "3.0.0"
