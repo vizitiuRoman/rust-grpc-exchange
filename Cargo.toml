@@ -14,7 +14,6 @@ path = "src/main.rs"
 
 [dependencies]
 grpcio = "0.8.2"
-grpc = "0.8.2"
 protobuf = "2.22.0"
 futures = "0.3.13"
 
