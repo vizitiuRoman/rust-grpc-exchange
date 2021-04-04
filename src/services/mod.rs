@@ -1,3 +1,3 @@
-pub mod services;
-pub mod rate_service;
+pub mod exchange_service;
 pub mod manager;
+pub mod services;
