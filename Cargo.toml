@@ -1,5 +1,5 @@
 [package]
-name = "rust-exchange-cli"
+name = "rust-grpc-exchange"
 version = "0.1.0"
 authors = ["vizitiuRoman <vizitiuroman.md@gmail.com>"]
 edition = "2018"
