@@ -17,11 +17,12 @@ impl Exchange {
 impl ExchangeService for Exchange {
     fn get_exchange_by_pairs(&self, pairs: &Vec<&str>) -> Result<Pairs, Error> {
         let mut buf = Vec::new();
-        let mut handle = Easy::new();
-        handle.url("https://api.binance.com/api/v3/ticker/price").unwrap();
+
+        let mut easy = Easy::new();
+        easy.url("https://api.binance.com/api/v3/ticker/price").unwrap();
 
         {
-            let mut transfer = handle.transfer();
+            let mut transfer = easy.transfer();
             transfer
                 .write_function(|data| {
                     buf.extend_from_slice(data);
