@@ -1,14 +1,12 @@
-use crate::services::rate_service::RateSrv;
+use crate::services::exchange_service::Exchange;
 
 #[derive(Clone)]
 pub struct Manager {
-    pub rate_service: RateSrv
+    pub exchange_service: Exchange,
 }
 
 impl Manager {
-    pub fn new(rate_service: RateSrv) -> Self {
-        Self {
-            rate_service,
-        }
+    pub fn new(rate_service: Exchange) -> Self {
+        Self { exchange_service: rate_service }
     }
 }
