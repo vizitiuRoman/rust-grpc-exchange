@@ -1,2 +1,2 @@
-pub mod rate;
-pub mod rate_grpc;
+pub mod pair;
+pub mod pair_grpc;
