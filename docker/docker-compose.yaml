@@ -1,0 +1,11 @@
+version: "3.7"
+
+services:
+  exchange:
+    image: rust-grpc-exchange:1.0.0
+    container_name: exchange
+    ports:
+      - "8001:8001"
+    restart: unless-stopped
+    environment:
+      PORT: 8001
