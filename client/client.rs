@@ -1,28 +1,34 @@
 extern crate grpcio;
 
-#[path = "../src/grpc_proto/rate_grpc.rs"]
-mod rate_grpc;
+#[path = "../src/grpc_proto/pair_grpc.rs"]
+mod pair_grpc;
 
-#[path = "../src/grpc_proto/rate.rs"]
-mod rate;
+#[path = "../src/grpc_proto/pair.rs"]
+mod pair;
 
+use crate::{
+    pair_grpc::RateServiceClient,
+};
 
-use crate::rate_grpc::{RateServiceClient};
-use crate::rate::{RateReq, RatesRes};
-
+use dotenv::dotenv;
 use grpcio::{ChannelBuilder, EnvBuilder};
-use std::env;
-use std::sync::Arc;
+use std::{str::FromStr, sync::Arc};
+use crate::pair::RateReq;
 
 fn main() {
+    dotenv().ok();
+
     let env = Arc::new(EnvBuilder::new().build());
-    let ch = ChannelBuilder::new(env).connect(format!("localhost:{}", 7070).as_str());
+    let port_str = std::env::var("PORT").unwrap();
+    let port = u16::from_str(&port_str).unwrap();
+
+    let ch = ChannelBuilder::new(env).connect(format!("localhost:{}", port).as_str());
     let client = RateServiceClient::new(ch);
 
-    let mut pairs = RateReq::new();
+    let mut req = RateReq::new();
 
-    pairs.set_pairs(String::from("CACAO"));
+    req.set_pairs(String::from("BTC-USDT,ETH-USDT"));
 
-    let check = client.get_rates(&pairs).expect("RPC Failed!");
-    println!("Ate {:?} and got charged ${:?}", pairs, check.get_pairs());
+    let check = client.get_rates(&req).expect("RPC Failed!");
+    println!("Ate {:?} and got charged ${:?}", req, check.get_pairs());
 }
