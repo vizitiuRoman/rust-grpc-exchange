@@ -4,6 +4,8 @@ services:
   exchange:
     image: rust-grpc-exchange:1.0.0
     container_name: exchange
+    volumes:
+      - ./logs/exchange:/app/logs
     ports:
       - "8001:8001"
     restart: unless-stopped
