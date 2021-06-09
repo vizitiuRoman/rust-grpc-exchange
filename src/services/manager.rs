@@ -6,7 +6,7 @@ pub struct Manager {
 }
 
 impl Manager {
-    pub fn new(rate_service: Exchange) -> Self {
-        Self { exchange_service: rate_service }
+    pub fn new(exchange_service: Exchange) -> Self {
+        Self { exchange_service }
     }
 }
