@@ -6,14 +6,12 @@ mod pair_grpc;
 #[path = "../src/grpc_proto/pair.rs"]
 mod pair;
 
-use crate::{
-    pair_grpc::RateServiceClient,
-};
+use crate::pair_grpc::RateServiceClient;
 
+use crate::pair::RateReq;
 use dotenv::dotenv;
 use grpcio::{ChannelBuilder, EnvBuilder};
 use std::{str::FromStr, sync::Arc};
-use crate::pair::RateReq;
 
 fn main() {
     dotenv().ok();
