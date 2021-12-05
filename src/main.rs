@@ -1,5 +1,3 @@
-#![feature(in_band_lifetimes)]
-
 mod delivery;
 mod domain;
 mod grpc_proto;

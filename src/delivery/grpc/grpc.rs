@@ -22,7 +22,7 @@ impl GRPC {
 }
 
 impl RateService for GRPC {
-    fn get_rates(&mut self, ctx: RpcContext<'a>, req: RateReq, sink: UnarySink<RatesRes>) {
+    fn get_rates(&mut self, ctx: RpcContext, req: RateReq, sink: UnarySink<RatesRes>) {
         let mut r = RatesRes::new();
 
         let prepared_str = String::from(req.pairs).replace("-", "");
