@@ -1,13 +1,12 @@
 mod delivery;
 mod domain;
 mod grpc_proto;
-mod services;
+mod use_cases;
 
 use delivery::grpc::grpc::GRPC;
 use dotenv::dotenv;
 use grpcio::{Environment, ServerBuilder};
 use log::{info, LevelFilter};
-use services::{exchange_service, manager};
 use std::{str::FromStr, sync::Arc};
 
 use log4rs::{
@@ -37,9 +36,9 @@ fn main() {
     let addr: String = format!("0.0.0.0:{}", port).parse().expect("Invalid address");
     info!("Listening on http://{}", addr);
 
-    let controller = GRPC::new(manager::Manager::new(exchange_service::Exchange::new()));
+    let grpc = GRPC::new(use_cases::get_exchange_use_case::GetExchangeUseCase::new());
 
-    let service = grpc_proto::pair_grpc::create_rate_service(controller);
+    let service = grpc_proto::pair_grpc::create_rate_service(grpc);
 
     let mut server =
         ServerBuilder::new(env).register_service(service).bind("0.0.0.0", port).build().unwrap();

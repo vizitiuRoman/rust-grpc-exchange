@@ -1,23 +1,21 @@
-use crate::{
-    grpc_proto::{
-        pair::{RateReq, RatesRes},
-        pair_grpc::RateService,
-    },
-    services::manager::Manager,
+use crate::grpc_proto::{
+    pair::{RateReq, RatesRes},
+    pair_grpc::RateService,
 };
 
-use crate::services::services::ExchangeService;
+use crate::use_cases::get_exchange_use_case::GetExchangeUseCase;
+use crate::use_cases::use_case::UseCase;
 use grpcio::{RpcContext, UnarySink};
 use protobuf::RepeatedField;
 
 #[derive(Clone)]
 pub struct GRPC {
-    services: Manager,
+    get_exchange_use_case: GetExchangeUseCase,
 }
 
 impl GRPC {
-    pub fn new(manager: Manager) -> Self {
-        Self { services: manager }
+    pub fn new(get_exchange_use_case: GetExchangeUseCase) -> Self {
+        Self { get_exchange_use_case }
     }
 }
 
@@ -27,7 +25,7 @@ impl RateService for GRPC {
 
         let prepared_str = String::from(req.pairs).replace("-", "");
         let splitted: Vec<&str> = prepared_str.split(",").collect();
-        let pairs = self.services.exchange_service.get_exchange_by_pairs(&splitted).unwrap();
+        let pairs = self.get_exchange_use_case.execute(&splitted).unwrap();
 
         r.set_pairs(RepeatedField::from(pairs));
 

@@ -1,21 +1,19 @@
-use crate::{
-    domain::pair::{Pairs, PairsFromAPI},
-    grpc_proto::pair,
-    services::services::ExchangeService,
-};
+use crate::domain::pair::{Pairs, PairsFromAPI};
+use crate::grpc_proto::pair::Pair;
+use crate::use_cases::use_case::UseCase;
 use curl::{easy::Easy, Error};
 
 #[derive(Clone)]
-pub struct Exchange {}
+pub struct GetExchangeUseCase {}
 
-impl Exchange {
+impl GetExchangeUseCase {
     pub fn new() -> Self {
         Self {}
     }
 }
 
-impl ExchangeService for Exchange {
-    fn get_exchange_by_pairs(&self, pairs: &Vec<&str>) -> Result<Pairs, Error> {
+impl UseCase<&Vec<&str>, Result<Pairs, Error>> for GetExchangeUseCase {
+    fn execute(&self, payload: &Vec<&str>) -> Result<Pairs, Error> {
         let mut buf = Vec::new();
 
         let mut easy = Easy::new();
@@ -34,10 +32,16 @@ impl ExchangeService for Exchange {
 
         let res: PairsFromAPI = serde_json::from_slice(&buf).unwrap();
 
-        let found_pairs: Vec<pair::Pair> = res
+        let found_pairs: Vec<Pair> = res
             .iter()
-            .filter(|&pair| self.contain_pair(&pair.symbol, &pairs))
-            .map(|pair| pair::Pair {
+            .filter(|&pair| {
+                let pair = payload.into_iter().find(|&&v| v == &pair.symbol);
+                match pair {
+                    Some(_) => true,
+                    None => false,
+                }
+            })
+            .map(|pair| Pair {
                 key: String::from(pair.symbol.as_str()),
                 value: String::from(pair.price.as_str()),
                 unknown_fields: Default::default(),
@@ -45,13 +49,5 @@ impl ExchangeService for Exchange {
             })
             .collect();
         Ok(found_pairs)
-    }
-
-    fn contain_pair(&self, symbol: &str, pairs: &Vec<&str>) -> bool {
-        let pair = pairs.into_iter().find(|&&v| v == symbol);
-        match pair {
-            Some(_) => true,
-            None => false,
-        }
     }
 }
