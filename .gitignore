@@ -1,5 +1,4 @@
 .idea
 /.idea
-Cargo.lock
 target
 logs
