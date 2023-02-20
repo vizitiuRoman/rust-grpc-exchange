@@ -28,7 +28,7 @@ services:
 ## Run your app with Compose
 
 ```bash
-$ cd docker && docker-compose up -d
+$ cd ops/docker && docker-compose up -d
 ```
 
 And if you see the following output then services is started ok.
