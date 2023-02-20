@@ -8,7 +8,7 @@ mod pair;
 
 use crate::pair_grpc::RateServiceClient;
 
-use crate::pair::RateReq;
+use crate::pair::RateInput;
 use dotenv::dotenv;
 use grpcio::{ChannelBuilder, EnvBuilder};
 use std::{str::FromStr, sync::Arc};
@@ -24,10 +24,10 @@ fn main() {
     ChannelBuilder::new(env).connect(format!("localhost:{}", port).as_str());
   let client = RateServiceClient::new(ch);
 
-  let mut req = RateReq::new();
+  let mut input = RateInput::new();
 
-  req.set_pairs(String::from("BTC-USDT,ETH-USDT"));
+  input.set_pairs(String::from("BTC-USDT,ETH-USDT"));
 
-  let check = client.get_rates(&req).expect("RPC Failed!");
-  println!("Ate {:?} and got charged ${:?}", req, check.get_pairs());
+  let check = client.get_rates(&input).expect("RPC Failed!");
+  println!("Ate {:?} and got charged ${:?}", input, check.get_pairs());
 }

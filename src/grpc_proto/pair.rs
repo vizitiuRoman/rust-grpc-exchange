@@ -225,7 +225,7 @@ impl ::protobuf::reflect::ProtobufValue for Pair {
 }
 
 #[derive(PartialEq,Clone,Default)]
-pub struct RatesRes {
+pub struct RatesOutput {
     // message fields
     pub pairs: ::protobuf::RepeatedField<Pair>,
     // special fields
@@ -233,14 +233,14 @@ pub struct RatesRes {
     pub cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a RatesRes {
-    fn default() -> &'a RatesRes {
-        <RatesRes as ::protobuf::Message>::default_instance()
+impl<'a> ::std::default::Default for &'a RatesOutput {
+    fn default() -> &'a RatesOutput {
+        <RatesOutput as ::protobuf::Message>::default_instance()
     }
 }
 
-impl RatesRes {
-    pub fn new() -> RatesRes {
+impl RatesOutput {
+    pub fn new() -> RatesOutput {
         ::std::default::Default::default()
     }
 
@@ -270,7 +270,7 @@ impl RatesRes {
     }
 }
 
-impl ::protobuf::Message for RatesRes {
+impl ::protobuf::Message for RatesOutput {
     fn is_initialized(&self) -> bool {
         for v in &self.pairs {
             if !v.is_initialized() {
@@ -344,8 +344,8 @@ impl ::protobuf::Message for RatesRes {
         Self::descriptor_static()
     }
 
-    fn new() -> RatesRes {
-        RatesRes::new()
+    fn new() -> RatesOutput {
+        RatesOutput::new()
     }
 
     fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
@@ -354,44 +354,44 @@ impl ::protobuf::Message for RatesRes {
             let mut fields = ::std::vec::Vec::new();
             fields.push(::protobuf::reflect::accessor::make_repeated_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<Pair>>(
                 "pairs",
-                |m: &RatesRes| { &m.pairs },
-                |m: &mut RatesRes| { &mut m.pairs },
+                |m: &RatesOutput| { &m.pairs },
+                |m: &mut RatesOutput| { &mut m.pairs },
             ));
-            ::protobuf::reflect::MessageDescriptor::new_pb_name::<RatesRes>(
-                "RatesRes",
+            ::protobuf::reflect::MessageDescriptor::new_pb_name::<RatesOutput>(
+                "RatesOutput",
                 fields,
                 file_descriptor_proto()
             )
         })
     }
 
-    fn default_instance() -> &'static RatesRes {
-        static instance: ::protobuf::rt::LazyV2<RatesRes> = ::protobuf::rt::LazyV2::INIT;
-        instance.get(RatesRes::new)
+    fn default_instance() -> &'static RatesOutput {
+        static instance: ::protobuf::rt::LazyV2<RatesOutput> = ::protobuf::rt::LazyV2::INIT;
+        instance.get(RatesOutput::new)
     }
 }
 
-impl ::protobuf::Clear for RatesRes {
+impl ::protobuf::Clear for RatesOutput {
     fn clear(&mut self) {
         self.pairs.clear();
         self.unknown_fields.clear();
     }
 }
 
-impl ::std::fmt::Debug for RatesRes {
+impl ::std::fmt::Debug for RatesOutput {
     fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
         ::protobuf::text_format::fmt(self, f)
     }
 }
 
-impl ::protobuf::reflect::ProtobufValue for RatesRes {
+impl ::protobuf::reflect::ProtobufValue for RatesOutput {
     fn as_ref(&self) -> ::protobuf::reflect::ReflectValueRef {
         ::protobuf::reflect::ReflectValueRef::Message(self)
     }
 }
 
 #[derive(PartialEq,Clone,Default)]
-pub struct RateReq {
+pub struct RateInput {
     // message fields
     pub pairs: ::std::string::String,
     // special fields
@@ -399,14 +399,14 @@ pub struct RateReq {
     pub cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a RateReq {
-    fn default() -> &'a RateReq {
-        <RateReq as ::protobuf::Message>::default_instance()
+impl<'a> ::std::default::Default for &'a RateInput {
+    fn default() -> &'a RateInput {
+        <RateInput as ::protobuf::Message>::default_instance()
     }
 }
 
-impl RateReq {
-    pub fn new() -> RateReq {
+impl RateInput {
+    pub fn new() -> RateInput {
         ::std::default::Default::default()
     }
 
@@ -437,7 +437,7 @@ impl RateReq {
     }
 }
 
-impl ::protobuf::Message for RateReq {
+impl ::protobuf::Message for RateInput {
     fn is_initialized(&self) -> bool {
         true
     }
@@ -503,8 +503,8 @@ impl ::protobuf::Message for RateReq {
         Self::descriptor_static()
     }
 
-    fn new() -> RateReq {
-        RateReq::new()
+    fn new() -> RateInput {
+        RateInput::new()
     }
 
     fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
@@ -513,37 +513,37 @@ impl ::protobuf::Message for RateReq {
             let mut fields = ::std::vec::Vec::new();
             fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeString>(
                 "pairs",
-                |m: &RateReq| { &m.pairs },
-                |m: &mut RateReq| { &mut m.pairs },
+                |m: &RateInput| { &m.pairs },
+                |m: &mut RateInput| { &mut m.pairs },
             ));
-            ::protobuf::reflect::MessageDescriptor::new_pb_name::<RateReq>(
-                "RateReq",
+            ::protobuf::reflect::MessageDescriptor::new_pb_name::<RateInput>(
+                "RateInput",
                 fields,
                 file_descriptor_proto()
             )
         })
     }
 
-    fn default_instance() -> &'static RateReq {
-        static instance: ::protobuf::rt::LazyV2<RateReq> = ::protobuf::rt::LazyV2::INIT;
-        instance.get(RateReq::new)
+    fn default_instance() -> &'static RateInput {
+        static instance: ::protobuf::rt::LazyV2<RateInput> = ::protobuf::rt::LazyV2::INIT;
+        instance.get(RateInput::new)
     }
 }
 
-impl ::protobuf::Clear for RateReq {
+impl ::protobuf::Clear for RateInput {
     fn clear(&mut self) {
         self.pairs.clear();
         self.unknown_fields.clear();
     }
 }
 
-impl ::std::fmt::Debug for RateReq {
+impl ::std::fmt::Debug for RateInput {
     fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
         ::protobuf::text_format::fmt(self, f)
     }
 }
 
-impl ::protobuf::reflect::ProtobufValue for RateReq {
+impl ::protobuf::reflect::ProtobufValue for RateInput {
     fn as_ref(&self) -> ::protobuf::reflect::ReflectValueRef {
         ::protobuf::reflect::ReflectValueRef::Message(self)
     }
@@ -551,11 +551,11 @@ impl ::protobuf::reflect::ProtobufValue for RateReq {
 
 static file_descriptor_proto_data: &'static [u8] = b"\
     \n\npair.proto\x12\x05movie\".\n\x04Pair\x12\x10\n\x03key\x18\x01\x20\
-    \x01(\tR\x03key\x12\x14\n\x05value\x18\x02\x20\x01(\tR\x05value\"-\n\x08\
-    RatesRes\x12!\n\x05pairs\x18\x01\x20\x03(\x0b2\x0b.movie.PairR\x05pairs\
-    \"\x1f\n\x07RateReq\x12\x14\n\x05pairs\x18\x01\x20\x01(\tR\x05pairs2<\n\
-    \x0bRateService\x12-\n\x08GetRates\x12\x0e.movie.RateReq\x1a\x0f.movie.R\
-    atesRes\"\0b\x06proto3\
+    \x01(\tR\x03key\x12\x14\n\x05value\x18\x02\x20\x01(\tR\x05value\"0\n\x0b\
+    RatesOutput\x12!\n\x05pairs\x18\x01\x20\x03(\x0b2\x0b.movie.PairR\x05pai\
+    rs\"!\n\tRateInput\x12\x14\n\x05pairs\x18\x01\x20\x01(\tR\x05pairs2A\n\
+    \x0bRateService\x122\n\x08GetRates\x12\x10.movie.RateInput\x1a\x12.movie\
+    .RatesOutput\"\0b\x06proto3\
 ";
 
 static file_descriptor_proto_lazy: ::protobuf::rt::LazyV2<::protobuf::descriptor::FileDescriptorProto> = ::protobuf::rt::LazyV2::INIT;

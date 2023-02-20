@@ -3,7 +3,7 @@ mod domain;
 mod grpc_proto;
 mod use_cases;
 
-use delivery::grpc::grpc::GRPC;
+use delivery::grpc::rate::RateGRPC;
 use dotenv::dotenv;
 use grpcio::{Environment, ServerBuilder};
 use log::{info, LevelFilter};
@@ -42,13 +42,13 @@ fn main() {
     format!("0.0.0.0:{}", port).parse().expect("Invalid address");
   info!("Listening on http://{}", addr);
 
-  let grpc =
-    GRPC::new(use_cases::get_exchange_use_case::GetExchangeUseCase::new());
+  let rate_grpc =
+    RateGRPC::new(use_cases::get_exchange_use_case::GetExchangeUseCase::new());
 
-  let service = grpc_proto::pair_grpc::create_rate_service(grpc);
+  let rate_service = grpc_proto::pair_grpc::create_rate_service(rate_grpc);
 
   let mut server = ServerBuilder::new(env)
-    .register_service(service)
+    .register_service(rate_service)
     .bind("0.0.0.0", port)
     .build()
     .unwrap();

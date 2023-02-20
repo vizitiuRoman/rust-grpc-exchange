@@ -4,9 +4,8 @@ RUN apt-get update \
         libpq5 \
     && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
-EXPOSE 8001
 
-FROM rust:1.51.0-buster AS build
+FROM rust:1.58.0-buster AS build
 WORKDIR /usr/src/app
 RUN USER=root cargo init
 RUN rustup install nightly

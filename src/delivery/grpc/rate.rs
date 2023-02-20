@@ -1,5 +1,5 @@
 use crate::grpc_proto::{
-  pair::{RateReq, RatesRes},
+  pair::{RateInput, RatesOutput},
   pair_grpc::RateService,
 };
 
@@ -9,26 +9,26 @@ use grpcio::{RpcContext, UnarySink};
 use protobuf::RepeatedField;
 
 #[derive(Clone)]
-pub struct GRPC {
+pub struct RateGRPC {
   get_exchange_use_case: GetExchangeUseCase,
 }
 
-impl GRPC {
+impl RateGRPC {
   pub fn new(get_exchange_use_case: GetExchangeUseCase) -> Self {
     Self { get_exchange_use_case }
   }
 }
 
-impl RateService for GRPC {
+impl RateService for RateGRPC {
   fn get_rates(
     &mut self,
     _: RpcContext,
-    req: RateReq,
-    sink: UnarySink<RatesRes>,
+    input: RateInput,
+    sink: UnarySink<RatesOutput>,
   ) {
-    let mut r = RatesRes::new();
+    let mut r = RatesOutput::new();
 
-    let prepared_str = String::from(req.pairs).replace("-", "");
+    let prepared_str = String::from(input.pairs).replace("-", "");
     let splitted: Vec<&str> = prepared_str.split(",").collect();
     let pairs = self.get_exchange_use_case.execute(&splitted).unwrap();
 
